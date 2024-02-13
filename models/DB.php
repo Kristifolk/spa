@@ -6,18 +6,19 @@ class DB
 {
     public function instance()
     {
-        // Сохранение данных в базу данных
-        $dbHost = 'db-myblogkristin';
+        $dbHost = 'db-spa';
         $dbUser = 'root';
         $dbPassword = 'root';
-        $dbName = 'myblogkristin';
+        $dbName = 'spa';
 
-        $connection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
-
-        if (!$connection) {
-            die('Ошибка подключения к базе данных: ' . mysqli_connect_error());
+        try {
+            $connection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
+            if (!$connection) {
+                throw new \Exception('Ошибка подключения к базе данных: ' . mysqli_connect_error());
+            }
+            return $connection;
+        } catch (\Exception $e) {
+            echo "Ошибка: " . $e->getMessage(), "\n";
         }
-
-        return $connection;
     }
 }

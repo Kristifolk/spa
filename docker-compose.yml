@@ -1,41 +1,41 @@
 version: '3.8'
 services: #все контейнеры писать внутри
-    web-myblogkristin:
+    web-spa:
         build:
             context: . # загрузка DockerFile
-        container_name: web-myblogkristin #название контейнера
+        container_name: web-spa #название контейнера
         volumes: # мантирование каталогов
             - ./:/var/www/html/
         restart: always # всегда перезагружать если остановился
         depends_on: # запускать этот контейнер после того как запуститься db
-            - db-myblogkristin
+            - db-spa
         extra_hosts:
-            - "myblogkristin.test:127.0.0.1"
+            - "spa.test:127.0.0.1"
         ports:
-            - "82:80"
+            - "83:80"
 
-    db-myblogkristin:
+    db-spa:
         image: mysql
-        container_name: db-myblogkristin
+        container_name: db-spa
         tty: true
         volumes:
             - ./dump:/docker-entrypoint-initdb.d
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: myblogkristin
-            MYSQL_USER: myblogkristin
+            MYSQL_DATABASE: spa
+            MYSQL_USER: spa
             MYSQL_PASSWORD: root
         restart: always
         ports:
-            - "3382:3306"
+            - "3383:3306"
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: phpmyadmin
+        container_name: phpmyadmin-spa
         links:
-            - db-myblogkristin
+            - db-spa
         environment:
-            PMA_HOST: db-myblogkristin
+            PMA_HOST: db-spa
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
         ports:
