@@ -1,0 +1,68 @@
+footer {
+    width: 100%;
+    height: auto;
+    background: #f8f9fa;;
+    margin-top: auto;
+    text-align: center;
+    color: rgba(0, 0, 0, .55);
+    padding: 10px 10px 10px;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+    color: rgba(0, 0, 0, .55);
+}
+
+footer nav a:hover {
+    border-bottom: 1px solid;
+    color: #0a58ca;
+}
+
+ul {
+    list-style: none;
+}
+
+.page {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    display: inline-block;
+    width: 25%;
+    padding: 0 15px;
+    vertical-align: top;
+}
+
+.graficlogo {
+    width: 100px;
+    height: 100px;
+}
+
+.social img {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.social .fb-link img:hover {
+    content: url("/assets/images/icons/fb.png");
+}
+
+.social .insta-link img:hover {
+    content: url("/assets/images/icons/insta.png");
+}
+
+.social .youtube-link img:hover {
+    content: url("/assets/images/icons/youtube.png");
+}

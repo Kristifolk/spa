@@ -21,11 +21,11 @@ $f->f();
     <title>Document</title>
 </head>
 <body>
-<a href="/">Main</a>
-<a href="/">Registration</a>
-<a href="/">Login</a>
+<a href="/">Main</a><br>
+<a href="/registration">Registration</a><br>
+<a href="/login">Login</a><br>
 <!--в футер подключения скриптов-->
-<script src="index.js"></script>
+<script src="/assets/js/index.js"></script><br>
 
 
 </body>
