@@ -4,7 +4,7 @@ services: #все контейнеры писать внутри
         build:
             context: . # загрузка DockerFile
         container_name: web-spa #название контейнера
-        volumes: # мантирование каталогов
+        volumes: # монтирование каталогов
             - ./:/var/www/html/
         restart: always # всегда перезагружать если остановился
         depends_on: # запускать этот контейнер после того как запуститься db
