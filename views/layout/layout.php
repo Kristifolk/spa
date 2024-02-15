@@ -48,30 +48,48 @@
                             </li>
                         <?php
                         else: ?>
-                            <h3>Войдите или зарегистрируйтесь</h3>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/registration">Registration</a>
+                            </li>
+                    </ul>
+                            <h4>Войдите или зарегистрируйтесь</h4>
                         <?php
                         endif; ?>
-                    </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <?php
-    if (!empty($_SESSION['auth'])):
-    ?>
     <div class="container">
+        <?php
+        if (!empty($_SESSION['auth'])):
+        ?>
         <div class="sidebar col-12 col-md-3">
             {total}
         </div>
+        <!-- total START        или в main?
+<div>
+    <h3>Итого за:</h3>
+        <h5>Сумма Прихода:  </h5>
+        <h5>Сумма Расхода:  </h5>
+
+    </div>
+ -->
+
+
+
+
 <!--TODO при увеличении загрузка страниц из БД-->
         {main}
+
+        <?php
+        else: ?>
+            <h1>Привет :) </h1>
+        <?php
+        endif; ?>
     </div>
-<?php
-else: ?>
-    <h1>Привет :) </h1>
-<?php
-endif; ?>
 
 <!--отображение ошибок-->
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
@@ -123,7 +141,8 @@ endif; ?>
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
 
-        <!--убрать не используемые файлы-->
+        <!--убрать не используемые скрипты-->
+        <script src="/assets/js/index.js"></script>
         <script src="/assets/js/login.js"></script>
         <script src="/assets/js/registration.js"></script>
         <script src="/assets/js/addArticle.js"></script>

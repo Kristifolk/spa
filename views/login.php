@@ -13,5 +13,7 @@
     <input type="password" id="password" name="password" required placeholder="Пароль"><br><br>
 
     <input type="submit" value="Войти">
+    <a href="/">Main</a><br>
     <input type="submit" value="Зарегистрироваться"><!--или перейти на шаг регистрации-->
+    <a class="nav-link" href="/registration">Registration</a>
 </form>

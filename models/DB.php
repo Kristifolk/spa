@@ -4,21 +4,25 @@ namespace models;
 
 class DB
 {
-    public function instance()
+    public function connection()
     {
-        $dbHost = 'db-spa';
-        $dbUser = 'root';
-        $dbPassword = 'root';
-        $dbName = 'spa';
+        $driver = 'mysql';
+        $host = 'db-spa';
+        $db_name = 'spa';
+        $db_user = 'root';
+        $db_pass = 'root';
+        $charset = 'utf8';
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
 
         try {
-            $connection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
-            if (!$connection) {
-                throw new \Exception('Ошибка подключения к базе данных: ' . mysqli_connect_error());
-            }
-            return $connection;
-        } catch (\Exception $e) {
-            echo "Ошибка: " . $e->getMessage(), "\n";
+            $pdo = new PDO(
+                "$driver:host=$host;dbname=$db_name; charset=$charset", $db_user, $db_pass, $options
+            );
+        } catch (PDOException $e) {
+            die('Ошибка подключения к базе данных: ' . $e->getMessage());
         }
     }
 }

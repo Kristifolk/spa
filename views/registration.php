@@ -20,6 +20,7 @@
     <input type="password" name="confirm_password" id="confirm_password" required placeholder="Пароль"><br><br>
 
     <input type="submit" value="Зарегистрироваться">
+    <a href="/">Main</a><br>
 </form>
 
 <div class="error"></div> <!--это где используется-->
