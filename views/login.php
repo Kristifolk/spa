@@ -14,6 +14,6 @@
 
     <input type="submit" value="Войти">
     <a href="/">Main</a><br>
-    <input type="submit" value="Зарегистрироваться"><!--или перейти на шаг регистрации-->
+    <input class="mt-4" type="submit" value="Зарегистрироваться"><!--или перейти на шаг регистрации-->
     <a class="nav-link" href="/registration">Registration</a>
 </form>

@@ -4,7 +4,7 @@ namespace models;
 
 class DB
 {
-    public function connection()
+    public function connection(): void
     {
         $driver = 'mysql';
         $host = 'db-spa';

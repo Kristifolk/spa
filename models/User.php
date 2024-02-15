@@ -1,11 +1,25 @@
 <?php
 
+namespace models;
+
 use \models\DB;
-class User
+class User extends Abstract_
 {
-
+private $db;
+public function __construct()
+{
+    $con = new DB();
+    $this->db = $con->connection();
 }
+public function loginEmail($login): array
+{
+    $sql = "SELECT * FROM users WHERE email = '$login'";
 
-$connection = new DB();
-$con = $connection->connection();
-
+    $query = $this->db->prepare($sql);
+    //bindParam позволяет использовать различные значения для переменной $login и обеспечивает безопасность от SQL-инъекций
+    $query->bindParam(':login', $login);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+}

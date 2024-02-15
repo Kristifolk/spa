@@ -1,22 +1,8 @@
 <?php
 
-//class index
-//{
-//    public function f()
-//    {
-//        echo "Привет";
-//    }
-//}
-//
-//$f = new index();
-//$f->f();
-
+//require_once __DIR__ . '/vendor/autoload.php';//подключить автозагрузчик
 ?>
 
 <?php
 include "./views/layout/layout.php"; // изменить если уйдет папка layout
 ?>
-
-
-
-
