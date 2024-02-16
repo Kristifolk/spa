@@ -19,8 +19,10 @@
     <label for="confirm_password">Повторите пароль:</label>
     <input type="password" name="confirm_password" id="confirm_password" required placeholder="Пароль"><br><br>
 
-    <input type="submit" value="Зарегистрироваться">
-    <a href="/">Main</a><br>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
 </form>
 
 <div class="error"></div> <!--это где используется-->
+
+<a href="/">Main</a><br>

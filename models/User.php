@@ -22,4 +22,14 @@ public function loginEmail($login): array
     dbCheckError($query);
     return $query->fetchAll();
 }
+    public function loginPhone($login)
+    {
+        $sql = "SELECT * FROM users WHERE tel = '$login'";
+
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':login', $login);
+        $query->execute();
+        dbCheckError($query);
+        return $query->fetchAll();
+    }
 }

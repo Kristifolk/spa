@@ -7,7 +7,7 @@
 ?>
 <h1>Main</h1>
 
-<form id="addOperation" action="/controllers/Main.php" method="POST"
+<form id="addOperation" action="/controllers/main.php" method="POST"
       enctype="multipart/form-data">  <!--addOperation в checkStatus....js-->
     <div class="row">
         <div class="col-12 ">
@@ -32,7 +32,7 @@
             <textarea name="comment" id="comment" placeholder="Комментарий" class="form-control"></textarea>
         </div>
         <div class="col-3 d-grid g-3 mt-3">
-            <input type="submit" value="Добавить запись" class="btn btn-success">
+            <button type="submit" class="btn btn-primary">Добавить запись</button>
         </div>
     </div>
 </form>
@@ -79,7 +79,7 @@
 </div>
 <!-- total END -->
 
-<!--
+<!-- на это не смотри
 <?=$expense['SUM(amount)']; ?>
 <?=$income['SUM(amount)'];  ?>
 -->

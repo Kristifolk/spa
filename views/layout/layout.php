@@ -37,9 +37,14 @@
                             <li class="nav-item">
                                 <a class="nav-link disabled" href="#">Hi <?= $_SESSION['user'] ?></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/controllers/logout.php">Logout</a>
-                            </li>
+                            <!--  Кнопка или ссылка что лучше уточню позже когда смогу и получить сессию -->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/controllers/logout.php">Logout</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <button type="submit" class="btn btn-primary">Logout</button>-->
+<!--                            </li>-->
+
                         <?php
                         else: ?>
                             <li class="nav-item">
@@ -80,7 +85,7 @@
 
         <?php
         else: ?>
-            <h1>Привет :) </h1>
+            <h1>Не авторизованный пользователь </h1>
         <?php
         endif; ?>
     </div>
