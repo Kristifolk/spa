@@ -1,0 +1,15 @@
+{
+    "name": "kristin/spa",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kristin",
+            "email": "devkristin.karr@gmail.com"
+        }
+    ],
+    "require": {}
+}
