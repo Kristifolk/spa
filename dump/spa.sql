@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `operations` (
-  `id` int NOT NULL,
+  `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `type` varchar(255) NOT NULL,
   `amount` float(10,2) DEFAULT NULL,
-  `description` text,
+`description` text,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -40,9 +40,9 @@ CREATE TABLE `operations` (
 -- Дамп данных таблицы `operations`
 --
 
-INSERT INTO `operations` (`id`, `user_id`, `type`, `amount`, `description`, `created_at`) VALUES
-(1, 1, 'income', 400.00, 'Test income', '2024-02-05 09:15:42'),
-(2, 1, 'expense', 300.00, 'Test expense', '2024-02-05 09:16:42');
+INSERT INTO `operations` (`user_id`, `type`, `amount`, `description`, `created_at`) VALUES
+(1, 'income', 400.00, 'Test income', '2024-02-05 09:15:42'),
+(1, 'expense', 300.00, 'Test expense', '2024-02-05 09:16:42');
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ INSERT INTO `operations` (`id`, `user_id`, `type`, `amount`, `description`, `cre
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `tel` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -62,8 +62,8 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `tel`, `email`, `password`) VALUES
-(1, 'Кристина', '89289999999', 'test@test.com', '$2y$10$QA4C5qS3OmDDtGKOqcZqTuKoLPeT9xVi5rLK1n31rxEMAc6secRpq');
+INSERT INTO `users` (`name`, `tel`, `email`, `password`) VALUES
+('Кристина', '89289999999', 'test@test.com', '$2y$10$QA4C5qS3OmDDtGKOqcZqTuKoLPeT9xVi5rLK1n31rxEMAc6secRpq');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

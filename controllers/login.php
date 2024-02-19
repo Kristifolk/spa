@@ -14,7 +14,7 @@ $queryLoginPhone = $user->loginPhone($login);
 
 //namespace controllers;
 
-use models\User;
+use src\models\User;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $login = $_POST['login'];
 $password = $_POST['password'];
 
-if (!empty($login) && !empty($password)) {
+if (empty($login) && empty($password)) {
     echo json_encode(['status' => 'fail', 'message' => 'Все поля обязательны для заполнения']);
     exit();
 }

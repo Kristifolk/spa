@@ -2,8 +2,8 @@
 
 namespace migration;
 
-use models\DB;
 use mysqli;
+use src\models\DB;
 
 class AbstractMigration
 {

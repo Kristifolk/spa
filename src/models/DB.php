@@ -1,10 +1,13 @@
 <?php
 
-namespace models;
+namespace src\models;
+
+use PDO;
+use PDOException;
 
 class DB
 {
-    public function connection(): void
+    public function connection(): PDO
     {
         $driver = 'mysql';
         $host = 'db-spa';
@@ -18,7 +21,7 @@ class DB
         ];
 
         try {
-            $pdo = new PDO(
+            return new PDO(
                 "$driver:host=$host;dbname=$db_name; charset=$charset", $db_user, $db_pass, $options
             );
         } catch (PDOException $e) {

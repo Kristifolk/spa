@@ -1,8 +1,5 @@
 <?php
 
-//require_once __DIR__ . '/vendor/autoload.php';//подключить автозагрузчик
-?>
+require_once __DIR__ . '/vendor/autoload.php';
 
-<?php
 include "./views/layout/layout.php"; // изменить если уйдет папка layout
-?>
