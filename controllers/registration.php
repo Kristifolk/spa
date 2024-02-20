@@ -34,10 +34,10 @@ if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($c
 
 $user = new User();
 
-$registration_result = $user->register($name, $tel, $email, $password);
+$registrationResult = $user->register($name, $tel, $email, $password);
 
 //// Обработка результатов регистрации
-//if ($registration_result) {
+//if ($registrationResult) {
 //    echo "Пользователь успешно зарегистрирован.";
 //} else {
 //    echo "Ошибка при регистрации пользователя.";
@@ -45,7 +45,7 @@ $registration_result = $user->register($name, $tel, $email, $password);
 
 
 
-if ($registration_result) {
+if ($registrationResult) {
     $_SESSION['auth'] = true;
     $_SESSION['user'] = $name;
     echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js

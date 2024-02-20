@@ -6,6 +6,6 @@ function checkStatusWithoutAlert(xhr) {
         let toast = new bootstrap.Toast(document.querySelector('#liveToast'));
         toast.show();
     } else if (data.status === "successfully") {
-        window.location.href = 'views/login.php';
+        window.location.href = '/index.php';
     }
 }

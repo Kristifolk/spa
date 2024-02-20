@@ -141,12 +141,13 @@
                 crossorigin="anonymous"></script>
 
         <!--убрать не используемые скрипты-->
-        <script src="/assets/js/index.js"></script>
+
         <script src="/assets/js/registration.js"></script>
         <script src="/assets/js/login.js"></script>
         <script src="/assets/js/addOperation.js"></script>
         <script src="/assets/js/checkStatusWithAlert.js"></script>
         <script src="/assets/js/checkStatusWithoutAlert.js"></script>
+        <script src="/assets/js/index.js"></script>
     </footer>
 </div>
 
