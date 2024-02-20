@@ -14,7 +14,7 @@ class User extends Abstract_
 
     public function loginEmail($login): array
     {
-        $sql = "SELECT * FROM users WHERE email = '$login'";
+        $sql = "SELECT * FROM users WHERE email = :login";
 
         $query = $this->db->prepare($sql);
         //bindParam позволяет использовать различные значения для переменной $login и обеспечивает безопасность от SQL-инъекций
@@ -25,9 +25,9 @@ class User extends Abstract_
         return $query->fetchAll();
     }
 
-    public function loginPhone($login)
+    public function loginPhone($login): array
     {
-        $sql = "SELECT * FROM users WHERE tel = '$login'";
+        $sql = "SELECT * FROM users WHERE tel = :login";
 
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
