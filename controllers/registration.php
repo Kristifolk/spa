@@ -6,11 +6,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-echo "controller reg";
-
 use src\models\User;
-
-var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
@@ -22,8 +18,9 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirm_password'];
 
-if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($confirmPassword)) { // поля, заполняемые пользователем не пустые
-    echo json_encode(['status' => 'fail', 'message' => 'Все поля обязательны для заполнения']);
+if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($confirmPassword)) {
+    echo "Все поля обязательны для заполнения";
+    //echo json_encode(['status' => 'fail', 'message' => 'Все поля обязательны для заполнения']);
     exit();
 }
 
@@ -36,22 +33,15 @@ $user = new User();
 
 $registrationResult = $user->register($name, $tel, $email, $password);
 
-//// Обработка результатов регистрации
-//if ($registrationResult) {
-//    echo "Пользователь успешно зарегистрирован.";
-//} else {
-//    echo "Ошибка при регистрации пользователя.";
-//}
-
-
-
 if ($registrationResult) {
     $_SESSION['auth'] = true;
     $_SESSION['user'] = $name;
-    echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
-    exit();
+    $_SESSION['user_id'] = $id;// из БД взять !
+    var_dump($_SESSION['user_id']);
+    //header('Location: /login');//без js просто редирект на login при успешной регистрации
+    //echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
 } else {
-    echo json_encode(['status' => 'fail', 'message' => 'Ошибка при регистрации пользователя']
-    );
+    echo "Ошибка при регистрации пользователя";
+    //echo json_encode(['status' => 'fail', 'message' => 'Ошибка при регистрации пользователя']);
     exit();
 }

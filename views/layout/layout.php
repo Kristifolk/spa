@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,14 +38,9 @@
                             <li class="nav-item">
                                 <a class="nav-link disabled" href="#">Hi <?= $_SESSION['user'] ?></a>
                             </li>
-                            <!--  Кнопка или ссылка что лучше уточню позже когда смогу и получить сессию -->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" href="/controllers/logout.php">Logout</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <button type="submit" class="btn btn-primary">Logout</button>-->
-<!--                            </li>-->
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
                         <?php
                         else: ?>
                             <li class="nav-item">
@@ -61,33 +57,9 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <?php
-        if (!empty($_SESSION['auth'])):
-        ?>
-        <div class="sidebar col-12 col-md-3">
-            {total}
-        </div>
-        <!-- total START        или в main?
-<div>
-    <h3>Итого за:</h3>
-        <h5>Сумма Прихода:  </h5>
-        <h5>Сумма Расхода:  </h5>
-
-    </div>
- -->
-
-
-
-
-<!--TODO при увеличении загрузка страниц из БД-->
-        {main}
-
-        <?php
-        else: ?>
-            <h1>Не авторизованный пользователь </h1>
-        <?php
-        endif; ?>
+<!--Здесь отображается страница, подгружаемая по fetch согласно routersHref из assets/js/index.js-->
     </div>
 
 <!--отображение ошибок-->
@@ -140,13 +112,6 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
 
-        <!--убрать не используемые скрипты-->
-
-        <script src="/assets/js/registration.js"></script>
-        <script src="/assets/js/login.js"></script>
-        <script src="/assets/js/addOperation.js"></script>
-        <script src="/assets/js/checkStatusWithAlert.js"></script>
-        <script src="/assets/js/checkStatusWithoutAlert.js"></script>
         <script src="/assets/js/index.js"></script>
     </footer>
 </div>

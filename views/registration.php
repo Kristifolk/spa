@@ -1,9 +1,13 @@
 <?php
 
-?>
+session_start();
+
+if (!empty($_SESSION['auth'])):
+    header('Location: main.php');
+else: ?>
 <h1>Registration</h1> <!--удалить-->
 <h1>Введите данные</h1>
-<form id="registrationForm" action="../controllers/registration.php" method="POST"> <!-- перезагрузка страницы -->
+<form id="registrationForm" action="../controllers/registration.php" method="POST">
     <label for="name">Имя:</label>
     <input type="text" name="name" id="name" placeholder="Имя"><br><br>
 
@@ -26,3 +30,5 @@
 <div class="error"></div> <!--это где используется-->
 
 <a href="/">Main</a><br>
+<?php
+    endif; ?>
