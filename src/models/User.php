@@ -57,4 +57,15 @@ class User extends Abstract_
 
         return true;
     }
+    public function user($tel, $email)
+    {
+        $sql = "SELECT * FROM users WHERE tel = :tel AND  email = :email";
+
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':tel', $tel);
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $this->dbCheckError($query);
+        return $query->fetch();
+    }
 }

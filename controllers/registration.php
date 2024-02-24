@@ -32,13 +32,13 @@ if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($c
 $user = new User();
 
 $registrationResult = $user->register($name, $tel, $email, $password);
+$currentUser = $user->user($tel, $email);
 
 if ($registrationResult) {
     $_SESSION['auth'] = true;
     $_SESSION['user'] = $name;
-    $_SESSION['user_id'] = $id;// из БД взять !
-    var_dump($_SESSION['user_id']);
-    //header('Location: /login');//без js просто редирект на login при успешной регистрации
+    $_SESSION['user_id'] = $currentUser["id"];
+    header('Location: /login');
     //echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
 } else {
     echo "Ошибка при регистрации пользователя";

@@ -41,8 +41,8 @@ CREATE TABLE `operations` (
 --
 
 INSERT INTO `operations` (`user_id`, `type`, `amount`, `description`, `created_at`) VALUES
-(1, 'income', 400.00, 'Test income', '2024-02-05 09:15:42'),
-(1, 'expense', 300.00, 'Test expense', '2024-02-05 09:16:42');
+(1, 'Приход', 400.00, 'Test income', '2024-02-05 09:15:42'),
+(1, 'Расход', 300.00, 'Test expense', '2024-02-05 09:16:42');
 
 -- --------------------------------------------------------
 

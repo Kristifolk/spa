@@ -18,7 +18,11 @@ $type = $_POST['type'];
 $description = $_POST['description'];
 $user_id = $_SESSION['user_id'];
 
-var_dump($user_id); //NULL
+$addOperation = $operation->addOperation($user_id, $amount, $type, $description);
 
-echo "controller addOperation";
-$types = $operation->addOperation($user_id, $amount, $type, $description);
+if(!$addOperation){//false
+    echo "Ошибка добавления операции";
+    exit();
+}
+
+header('Location: ../');

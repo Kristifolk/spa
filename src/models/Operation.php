@@ -13,12 +13,7 @@ public function __construct()
 
     public function types()
     {
-        $sql = "SELECT DISTINCT
-            CASE 
-                WHEN type = 'income' THEN 'Приход'
-                WHEN type = 'expense' THEN 'Расход'
-                END AS type
-            FROM operations";
+        $sql = "SELECT DISTINCT type FROM operations";
 
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -40,5 +35,33 @@ public function __construct()
         return true;
     }
 
+    public function lastTenOperations()
+    {
+        $sql = "SELECT operations.*, users.name AS user_name FROM operations
+            JOIN users ON users.id = operations.user_id
+            ORDER BY operations.id DESC
+            LIMIT 10";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $this->dbCheckError($query);
+        return $query->fetchAll();
+    }
 
+    public function totalIncome()
+    {
+        $sql = "SELECT SUM(amount) AS total_income FROM operations WHERE type = 'Приход'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $this->dbCheckError($query);
+        return $query->fetchColumn();
+    }
+
+    public function totalExpense()
+    {
+        $sql = "SELECT SUM(amount) AS total_expense FROM operations WHERE type = 'Расход'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $this->dbCheckError($query);
+        return $query->fetchColumn();
+    }
 }

@@ -5,13 +5,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 session_start();
 use src\models\Operation;
 $operation = new Operation();
-//$operations = //записи операций из БД
+$operations =$operation->lastTenOperations();
 $types = $operation->types();
-var_dump($types);
-//$income = //приход
-//$expense = //расход
+$income =  $operation->totalIncome();
+$expense =  $operation->totalExpense();
 if (!empty($_SESSION['auth'])):
-    echo "views main";
     ?>
     <h1>Main</h1>
 
@@ -64,11 +62,11 @@ if (!empty($_SESSION['auth'])):
             <tr id="<?= $operation['id']; ?>">
                 <td><?= $operation['amount']; ?></td>
                 <td><?= $operation['type']; ?></td>
-                <!-- из табл $operations поле type и табл types поле title as type   -->
                 <td><?= $operation['description']; ?></td>
                 <td><?= $operation['created_at']; ?></td>
+                <td><?= $operation['user_name'];?></td>
                 <td>
-                    <button>Удалить</button><!--Ajax-->
+                    <button>Удалить</button>
                 </td>
             </tr>
         <?php
@@ -78,20 +76,15 @@ if (!empty($_SESSION['auth'])):
     </table>
     <!-- Таблица END -->
 
-    <!-- total START        или перенести в  sidebar?
-    <div class="sidebar col-12 col-md-3">
-                {total}
-    </div> -->
     <div>
-        <h3>Итого за:</h3><!-- можно сделать выбор периода. Сейчас за все время -->
-        <h5>Сумма Прихода: <?= $income ?> </h5>
-        <h5>Сумма Расхода: <?= $expense ?> </h5>
+        <!-- можно сделать выбор периода. Сейчас за все время -->
+        <h3>Итого за:</h3>
+        <h5>Сумма Прихода: <?= $income ?> руб</h5>
+        <h5>Сумма Расхода: <?= $expense ?> руб</h5>
         <!-- можно сделать Баланс = Приход - Расход -->
     </div>
     <!-- total END -->
 
-
-    -->
 <?php
 else:
     header('Location: login.php');
