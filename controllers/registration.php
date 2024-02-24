@@ -38,7 +38,7 @@ if ($registrationResult) {
     $_SESSION['auth'] = true;
     $_SESSION['user'] = $name;
     $_SESSION['user_id'] = $currentUser["id"];
-    header('Location: /login');
+    header('Location: /login');//не работает
     //echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
 } else {
     echo "Ошибка при регистрации пользователя";

@@ -29,6 +29,5 @@ else: ?>
 
 <div class="error"></div> <!--это где используется-->
 
-<a href="/">Main</a><br>
 <?php
     endif; ?>

@@ -15,9 +15,7 @@ const routeHref = (path) => {
 const routersHref = {
     '/': 'views/main.php',
     '/login': 'views/login.php',
-    '/registration': 'views/registration.php',
-    '/logout': 'controllers/logout.php'//очищает сессию и Должен редиректит на views/logout.php (или на login,тогда можно удалить views/logout.php), но не делает
-    //'/logout': 'views/logout.php'//кидает на views/logout.php минуя controllers/logout.php и сессия не очищается
+    '/registration': 'views/registration.php'
 }
 
 //асинхронная функция, j будет подгружать страницы по указанному адресу

@@ -16,4 +16,4 @@ if (ini_get("session.use_cookies")) {
 
 // Уничтожить сессию
 session_unset();
-header('Location: ../');//не редиректит на views/logout.php, а кидает на индекс и дублируется layout
+header('Location: /login');

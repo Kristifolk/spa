@@ -39,7 +39,8 @@ session_start();
                                 <a class="nav-link disabled" href="#">Hi <?= $_SESSION['user'] ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/logout">Logout</a>
+                                <button type="button" onclick="logout()" class="nav-link" style="border: none; background: none;  cursor: pointer;" >Logout</button>
+
                             </li>
                         <?php
                         else: ?>
@@ -113,6 +114,8 @@ session_start();
                 crossorigin="anonymous"></script>
 
         <script src="/assets/js/index.js"></script>
+        <script src="/assets/js/logout.js"></script>
+
     </footer>
 </div>
 
