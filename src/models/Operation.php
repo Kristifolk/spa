@@ -20,7 +20,7 @@ public function __construct()
         $this->dbCheckError($query);
         return $query->fetchAll();
     }
-    public function addOperation($user_id, $amount, $type, $description)
+    public function addOperation($user_id, $amount, $type, $description): bool
     {
         $sql = "INSERT INTO operations (user_id, amount, type, description) VALUES (:user_id, :amount, :type, :description)";
 
@@ -29,6 +29,18 @@ public function __construct()
         $query->bindParam(':amount', $amount);
         $query->bindParam(':type', $type);
         $query->bindParam(':description', $description);
+        $query->execute();
+        $this->dbCheckError($query);
+
+        return true;
+    }
+
+    public function delOperation($id): bool
+    {
+        $sql = "DELETE FROM operations WHERE id = :id";
+
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':id', $id);
         $query->execute();
         $this->dbCheckError($query);
 

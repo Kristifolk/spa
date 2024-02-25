@@ -115,6 +115,7 @@ session_start();
 
         <script src="/assets/js/index.js"></script>
         <script src="/assets/js/logout.js"></script>
+        <script src="/assets/js/deleteOperation.js"></script>
 
     </footer>
 </div>

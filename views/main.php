@@ -66,7 +66,7 @@ if (!empty($_SESSION['auth'])):
                 <td><?= $operation['created_at']; ?></td>
                 <td><?= $operation['user_name'];?></td>
                 <td>
-                    <button>Удалить</button>
+                    <button type="submit" name="button" class= "" onclick="sendDeleteRequest(<?= $operation['id']; ?>)">Удалить</button>
                 </td>
             </tr>
         <?php
@@ -89,3 +89,23 @@ if (!empty($_SESSION['auth'])):
 else:
     header('Location: login.php');
 endif; ?>
+
+<script>
+    function sendDeleteRequest(id){
+        // Создаем AJAX-запрос
+        var xhr = new XMLHttpRequest();
+
+        // Формируем URL для GET запроса, добавляя параметр id в конец URL. Ф-я encodeURIComponent() используется для кодирования значения id, чтобы оно могло быть передано безопасно через URL
+        var url = "/controllers/deleteOperation.php?id=" + encodeURIComponent(id);
+
+        // Устанавливаем метод, URL и асинхронность
+        xhr.open("GET", url, true);
+
+        // Отправляем запрос
+        xhr.send();
+
+        // Возвращаем объект XMLHttpRequest
+        return xhr;
+
+    }
+</script>
