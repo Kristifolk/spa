@@ -6,6 +6,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+use src\controllers\Validation;
 use src\models\User;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -24,10 +25,32 @@ if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($c
     exit();
 }
 
-//$notValid = validation($password, $confirmPassword, $email, $tel, $name);
-//if ($notValid) {
-//    return;
-//}
+$validation = new Validation();
+
+if (!$validation->isName($name)) {
+    echo 'Некорректный формат имени';
+    exit();
+}
+
+if (!$validation->isTel($tel)) {
+    echo 'Некорректный формат телефона';
+    exit();
+}
+
+if (!$validation->isEmail($email)) {
+    echo 'Некорректный формат email';
+    exit();
+}
+
+if (!$validation->isPasswordsMatch($password, $confirmPassword)) {
+    echo 'Пороли не совпадают';
+    exit();
+}
+
+if ($validation->IsUserInDatabase($tel, $email)) {
+    echo 'Пользователь с таким телефоном или email уже существует. Введите другие данные';
+    exit();
+}
 
 $user = new User();
 
