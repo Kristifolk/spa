@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-$name = $_POST['name'];
-$tel = $_POST['tel'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$confirmPassword = $_POST['confirm_password'];
+$name = $_POST['name'] ?? '';
+$tel = $_POST['tel'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+$confirmPassword = $_POST['confirm_password'] ?? '';
 
 if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($confirmPassword)) {
     echo "Все поля обязательны для заполнения";
@@ -38,7 +38,7 @@ if ($registrationResult) {
     $_SESSION['auth'] = true;
     $_SESSION['user'] = $name;
     $_SESSION['user_id'] = $currentUser["id"];
-    header('Location: /login');//не работает
+    header('Location: /');
     //echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
 } else {
     echo "Ошибка при регистрации пользователя";

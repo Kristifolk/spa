@@ -8,7 +8,9 @@ document.addEventListener('click', e=> {
 //кастомный роутинг для ссылок
 const routeHref = (path) => {
     window.history.pushState({}, '', path);
-    handleLocation(routersHref);
+    handleLocation(routersHref).then(r =>  {
+        console.log('Содержимое успешно загружено!');
+    });
 }
 
 //соответствие ссылок и страниц
@@ -28,4 +30,6 @@ const handleLocation = async () => {
 //перезаписать стрелочки назад/вперед переход по истории в браузере
 window.onpopstate = handleLocation
 window.route = routeHref;//перезаписать стандартный роут на кастомный
-handleLocation(routersHref);//чтобы при перезагрузке отображалась  const html
+handleLocation(routersHref).then(r => {
+    console.log('Содержимое успешно загружено!');
+});//чтобы при перезагрузке отображалась  const html
