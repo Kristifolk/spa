@@ -20,7 +20,7 @@ public function __construct()
         $this->dbCheckError($query);
         return $query->fetchAll();
     }
-    public function addOperation($user_id, $amount, $type, $description): bool
+    public function addOperation($user_id, $amount, $type, $description)
     {
         $sql = "INSERT INTO operations (user_id, amount, type, description) VALUES (:user_id, :amount, :type, :description)";
 
@@ -32,7 +32,17 @@ public function __construct()
         $query->execute();
         $this->dbCheckError($query);
 
-        return true;
+        // Получаем ID только что добавленной операции
+        $operationId = $this->db->lastInsertId();
+
+        // Получаем данные только что добавленной операции для возврата
+        $sql = "SELECT * FROM operations ORDER BY id DESC LIMIT 10";//ошибка тут или
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $this->dbCheckError($query);
+        $operationData = $query->fetchAll();//fetch(); /ошибка тут или
+
+        return $operationData;
     }
 
     public function delOperation($id): bool

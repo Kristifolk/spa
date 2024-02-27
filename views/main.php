@@ -3,45 +3,45 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
+
 use src\models\Operation;
+
 $operation = new Operation();
-$operations =$operation->lastTenOperations();
+$operations = $operation->lastTenOperations();
 $types = $operation->types();
-$income =  $operation->totalIncome();
-$expense =  $operation->totalExpense();
+$income = $operation->totalIncome();
+$expense = $operation->totalExpense();
 if (!empty($_SESSION['auth'])):
     ?>
     <h1>Main</h1>
-
-    <form id="addOperation" action="/controllers/addOperation.php" method="POST"
-          enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-12 ">
-                <label for="amount" class="form-label" id="amount">Сумма, руб:</label>
-                <input type="text" name="amount" id="amount" placeholder="Сумма" class="form-control">
-            </div>
-            <div class="col-12 mt-3">
-                <label for="type" class="form-label">Тип:</label>
-                <select name="type" id="type" class="form-control">
-                    <?php
-                    foreach ($types as $type):
-                        ?>
-                        <option value="<?= $type['type'] ?>">
-                            <?= $type['type']; ?>
-                        </option>
-                    <?php
-                    endforeach; ?>
-                </select>
-            </div>
-            <div class="col-12 mt-3">
-                <label for="description" class="form-label">Комментарий:</label>
-                <textarea name="description" id="description" placeholder="Комментарий" class="form-control"></textarea>
-            </div>
-            <div class="col-3 d-grid g-3 mt-3">
-                <button type="submit" name="button" class="btn btn-primary" onclick="sendAddOperationRequest()">Добавить запись</button>
-            </div>
+    <div class="row">
+        <div class="col-12 ">
+            <label for="amount" class="form-label" >Сумма, руб:</label>
+            <input type="text" name="amount" id="amount" placeholder="Сумма" class="form-control">
         </div>
-    </form>
+        <div class="col-12 mt-3">
+            <label for="type" class="form-label">Тип:</label>
+            <select name="type" id="type" class="form-control">
+                <?php
+                foreach ($types as $type):
+                    ?>
+                    <option value="<?= $type['type'] ?>">
+                        <?= $type['type']; ?>
+                    </option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-12 mt-3">
+            <label for="description" class="form-label">Комментарий:</label>
+            <textarea name="description" id="description" placeholder="Комментарий" class="form-control"></textarea>
+        </div>
+        <div class="col-3 d-grid g-3 mt-3">
+            <button type="submit" name="button" class="btn btn-primary" onclick="sendAddOperationRequest()">Добавить
+                запись
+            </button>
+        </div>
+    </div>
 
     <!-- Таблица START -->
     <h2>Последние 10 записей</h2>
@@ -64,9 +64,10 @@ if (!empty($_SESSION['auth'])):
                 <td><?= $operation['type']; ?></td>
                 <td><?= $operation['description']; ?></td>
                 <td><?= $operation['created_at']; ?></td>
-                <td><?= $operation['user_name'];?></td>
+                <td><?= $operation['user_name']; ?></td>
                 <td>
-                    <button type="submit" name="button" onclick="sendDeleteRequest(<?= $operation['id']; ?>)">Удалить</button>
+                    <button type="submit" name="button" onclick="sendDeleteRequest(<?= $operation['id']; ?>)">Удалить
+                    </button>
                 </td>
             </tr>
         <?php

@@ -31,16 +31,16 @@ if(!$validation->isCorrectText($description)){
     exit();
 }
 
-$addOperation = $operation->addOperation($user_id, $amount, $type, $description);
+$operationData = $operation->addOperation($user_id, $amount, $type, $description);
 
-if(!$addOperation){//false
+if(!$operationData){//false
     echo "Ошибка добавления операции";
     exit();
 }
 
 $totalIncome = $operation->totalIncome();
 $totalExpense = $operation->totalExpense();
-$array = [$addOperation, $totalIncome, $totalExpense];
+$array = [$operationData, $totalIncome, $totalExpense];
 echo json_encode($array);
 
 //header('Location: ../');

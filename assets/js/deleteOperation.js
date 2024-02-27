@@ -9,6 +9,7 @@ function sendDeleteRequest(id){
                 document.getElementById(id).style.display = "none";
 
                 let result = JSON.parse(data);
+                console.log(result);
                 // Данные после обновления. Выводим данные сумм в #total2
                 const totalSum =
                     '<div>'
