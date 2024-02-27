@@ -1,9 +1,12 @@
-function sendDeleteRequest(id){
+function sendAddOperationRequest(){
     $(document).ready(function() {
+        let amount
+        let type
+        let description
         $.ajax({
-            url: '/controllers/deleteOperation.php',
-            type: 'GET',
-            data: {id: id},
+            url: '/controllers/addOperation.php',
+            type: 'POST',
+            data: {amount: amount, type: type, description: description},
             success: function (data) {
                 //скрытие элемента с id
                 document.getElementById(id).style.display = "none";

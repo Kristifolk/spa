@@ -30,12 +30,27 @@ class Validation
         }
     }
 
-    function IsUserInDatabase($tel, $email)
+    function IsUserInDatabase($tel, $email): bool
     {
         $user = new User();
         $currentUser = $user->user($tel, $email);
         if(!empty($currentUser)){
             return true;
         }
+        return false;
     }
+
+    function isPositiveNumber($amount): bool
+    {
+        if (is_numeric($amount) && $amount > 0) {
+                return true;
+        }
+        return false;
+    }
+
+    function isCorrectText($text): bool
+    {
+        return preg_match('/^[a-zA-ZА-яёЁ\s\d.,!?\"]+$/u', $text);
+    }
+
 }

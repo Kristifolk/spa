@@ -17,7 +17,7 @@ if (!empty($_SESSION['auth'])):
           enctype="multipart/form-data">
         <div class="row">
             <div class="col-12 ">
-                <label for="amount" class="form-label">Сумма, руб:</label>
+                <label for="amount" class="form-label" id="amount">Сумма, руб:</label>
                 <input type="text" name="amount" id="amount" placeholder="Сумма" class="form-control">
             </div>
             <div class="col-12 mt-3">
@@ -38,7 +38,7 @@ if (!empty($_SESSION['auth'])):
                 <textarea name="description" id="description" placeholder="Комментарий" class="form-control"></textarea>
             </div>
             <div class="col-3 d-grid g-3 mt-3">
-                <button type="submit" class="btn btn-primary">Добавить запись</button>
+                <button type="submit" name="button" class="btn btn-primary" onclick="sendAddOperationRequest()">Добавить запись</button>
             </div>
         </div>
     </form>
@@ -66,7 +66,7 @@ if (!empty($_SESSION['auth'])):
                 <td><?= $operation['created_at']; ?></td>
                 <td><?= $operation['user_name'];?></td>
                 <td>
-                    <button type="submit" name="button" class= "" onclick="sendDeleteRequest(<?= $operation['id']; ?>)">Удалить</button>
+                    <button type="submit" name="button" onclick="sendDeleteRequest(<?= $operation['id']; ?>)">Удалить</button>
                 </td>
             </tr>
         <?php
@@ -76,36 +76,19 @@ if (!empty($_SESSION['auth'])):
     </table>
     <!-- Таблица END -->
 
-    <div>
+    <div id="total">
         <!-- можно сделать выбор периода. Сейчас за все время -->
         <h3>Итого за:</h3>
         <h5>Сумма Прихода: <?= $income ?> руб</h5>
         <h5>Сумма Расхода: <?= $expense ?> руб</h5>
         <!-- можно сделать Баланс = Приход - Расход -->
     </div>
+    <!-- Данные после обновления -->
+    <div id="total2"></div>
+
     <!-- total END -->
 
 <?php
 else:
     header('Location: login.php');
 endif; ?>
-
-<script>
-    function sendDeleteRequest(id){
-        // Создаем AJAX-запрос
-        var xhr = new XMLHttpRequest();
-
-        // Формируем URL для GET запроса, добавляя параметр id в конец URL. Ф-я encodeURIComponent() используется для кодирования значения id, чтобы оно могло быть передано безопасно через URL
-        var url = "/controllers/deleteOperation.php?id=" + encodeURIComponent(id);
-
-        // Устанавливаем метод, URL и асинхронность
-        xhr.open("GET", url, true);
-
-        // Отправляем запрос
-        xhr.send();
-
-        // Возвращаем объект XMLHttpRequest
-        return xhr;
-
-    }
-</script>

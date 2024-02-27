@@ -6,6 +6,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+use src\controllers\Validation;
 use src\models\Operation;
 $operation = new Operation();
 
@@ -18,6 +19,18 @@ $type = $_POST['type'];
 $description = $_POST['description'];
 $user_id = $_SESSION['user_id'];
 
+$validation = new Validation();
+
+if(!$validation->isPositiveNumber($amount)){
+    echo "Введите положительное число";
+    exit();
+}
+
+if(!$validation->isCorrectText($description)){
+    echo "Некорректный ввод комментария";
+    exit();
+}
+
 $addOperation = $operation->addOperation($user_id, $amount, $type, $description);
 
 if(!$addOperation){//false
@@ -25,4 +38,9 @@ if(!$addOperation){//false
     exit();
 }
 
-header('Location: ../');
+$totalIncome = $operation->totalIncome();
+$totalExpense = $operation->totalExpense();
+$array = [$addOperation, $totalIncome, $totalExpense];
+echo json_encode($array);
+
+//header('Location: ../');
