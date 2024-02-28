@@ -34,6 +34,6 @@ if (isset($_GET['id'])) {
 
 $totalIncome = $operation->totalIncome() ?? '';
 $totalExpense = $operation->totalExpense()  ?? '';
-//$array = [$delOperation, $totalIncome, $totalExpense];
-$array = [$totalIncome, $totalExpense];
+$lastTenOperations = $operation->lastTenOperations();
+$array = [$totalIncome, $totalExpense, $lastTenOperations];
 echo json_encode($array);

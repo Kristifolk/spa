@@ -31,19 +31,18 @@ public function __construct()
         $query->bindParam(':description', $description);
         $query->execute();
         $this->dbCheckError($query);
-
         // Получаем ID только что добавленной операции
         $operationId = $this->db->lastInsertId();
 
         // Получаем данные только что добавленной операции для возврата
         $sql = "SELECT operations.*, users.name AS user_name FROM operations
             JOIN users ON users.id = operations.user_id WHERE operations.id = :id";
+
         $query = $this->db->prepare($sql);
         $query->bindParam(':id', $operationId);
         $query->execute();
         $this->dbCheckError($query);
         $operationData = $query->fetch();
-
         return $operationData;
     }
 
@@ -55,9 +54,6 @@ public function __construct()
         $query->bindParam(':id', $id);
         $query->execute();
         $this->dbCheckError($query);
-
-        // Обновление списка строк таблицы
-        //return $this->lastTenOperations();
         return true;
     }
 

@@ -9,7 +9,7 @@ function sendDeleteRequest(id){
                 document.getElementById(id).style.display = "none";
 
                 let result = JSON.parse(data);
-                console.log(result);
+                console.log(result[2]);
                 // Данные после обновления. Выводим данные сумм в #total2
                 const totalSum =
                     '<div>'
@@ -21,24 +21,30 @@ function sendDeleteRequest(id){
                 // Скрываем текущие данные #total
                 document.getElementById("total").style.display = "none";
 
+                let tableNew = '';
+                const innerArray = result[2]; // Получаем внутренний массив
+                for (let i = 0; i < innerArray.length; i++) {
+                    //const item = innerArray[i]['id'];
+                    //console.log(item); // Выводим каждый элемент внутреннего массива
 
-                // // Данные после обновления. Выводим новую строку с данными в таблицу
-                // const tableNew =
-                //     '<tr id="'+ result[0]['id']+'">'
-                //     +'<td>'+ result[0]['amount'] +'</td>'
-                //     +'<td>'+ result[0]['type'] +'</td>'
-                //     +'<td>'+ result[0]['description'] +'</td>'
-                //     +'<td>'+ result[0]['created_at'] +'</td>'
-                //     +'<td>'+ result[0]['user_name'] +'</td>'
-                //     +'<td><button type="submit" name="button" onClick="sendDeleteRequest('+ result[0]['id']
-                //     +')">Удалить</button></td>'
-                //     +'</tr>';
-                //
-                // // Обновить элемент <tbody> таблицы с классом table
-                // $('.table tbody').html(tableNew);
+                    // Данные после обновления. Выводим новую строку с данными в таблицу
+                    const tableRow =
+                        '<tr id="' + innerArray[i]['id'] + '">'
+                        + '<td>' + innerArray[i]['amount'] + '</td>'
+                        + '<td>' + innerArray[i]['type'] + '</td>'
+                        + '<td>' + innerArray[i]['description'] + '</td>'
+                        + '<td>' + innerArray[i]['created_at'] + '</td>'
+                        + '<td>' + innerArray[i]['user_name'] + '</td>'
+                        + '<td><button type="submit" name="button" onClick="sendDeleteRequest(' + innerArray[i]['id']
+                        + ')">Удалить</button></td>'
+                        + '</tr>';
+                    tableNew += tableRow;
+                }
+                // Обновить элемент <tbody> таблицы с классом table
+                $('.table tbody').html(tableNew);
 
 
-                // // Скрываем текущие данные #total
+                // Скрываем текущие данные #total
                 //document.getElementById("tbody").style.display = "none";
 
                 // Обновление списка строк таблицы
