@@ -21,7 +21,6 @@ class User extends Abstract_
         $query->bindParam(':login', $login);
         $query->execute();
         $this->dbCheckError($query);
-
         return $query->fetchAll();
     }
 
@@ -48,13 +47,8 @@ class User extends Abstract_
         $query->bindParam(':tel', $tel);
         $query->bindParam(':email', $email);
         $query->bindParam(':password', $hashed_password);
-
         $query->execute();
-
         $errorInfo = $this->dbCheckError($query);
-
-        //var_dump($errorInfo);
-
         return true;
     }
     public function user($tel, $email)

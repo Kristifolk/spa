@@ -18,7 +18,6 @@ $password = $_POST['password'] ?? '';
 
 if (empty($login) && empty($password)) {
     echo "Все поля обязательны для заполнения";
-    //echo json_encode(['status' => 'fail', 'message' => 'Все поля обязательны для заполнения']);
     exit();
 }
 

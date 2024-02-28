@@ -28,4 +28,6 @@ git clone https://github.com/Kristifolk/spa.git
 cd spa
 
 docker-compose up -d --build 
+
+composer install 
  ```

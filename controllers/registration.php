@@ -21,7 +21,6 @@ $confirmPassword = $_POST['confirm_password'] ?? '';
 
 if (empty($name) && empty($tel) && empty($email) && empty($password) && empty($confirmPassword)) {
     echo "Все поля обязательны для заполнения";
-    //echo json_encode(['status' => 'fail', 'message' => 'Все поля обязательны для заполнения']);
     exit();
 }
 
@@ -62,9 +61,7 @@ if ($registrationResult) {
     $_SESSION['user'] = $name;
     $_SESSION['user_id'] = $currentUser["id"];
     header('Location: /');
-    //echo json_encode(['status' => 'successfully']);//редирект на главную registration.js/ checkStatusWithoutAlert.js
 } else {
     echo "Ошибка при регистрации пользователя";
-    //echo json_encode(['status' => 'fail', 'message' => 'Ошибка при регистрации пользователя']);
     exit();
 }
