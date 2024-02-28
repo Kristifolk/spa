@@ -12,28 +12,20 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $delOperation = $operation->delOperation($id);
-
-//if(!$delOperation){//false
-//    echo "Ошибка удаления операции";
-//    exit();
-//}
-
-//    if ($delOperation) {
-//        echo json_encode(['status' => 'success']);
-//    } else {
-//        echo json_encode(['status' => 'error', 'message' => 'Ошибка удаления операции']);
-//    }
-//} else {
-//    echo json_encode(['status' => 'error', 'message' => 'Идентификатор операции не был передан']);
+if (!isset($_GET['id'])) {
+    echo json_encode(['error' => 'Идентификатор операции не был передан']);
 }
 
-//header('Location: ../');
+$id = $_GET['id'];
+$delOperation = $operation->delOperation($id);
+
+if (!$delOperation) {
+    echo json_encode(['error' => 'Ошибка удаления операции']);
+    die();
+}
 
 $totalIncome = $operation->totalIncome() ?? '';
-$totalExpense = $operation->totalExpense()  ?? '';
+$totalExpense = $operation->totalExpense() ?? '';
 $lastTenOperations = $operation->lastTenOperations();
 $array = [$totalIncome, $totalExpense, $lastTenOperations];
 echo json_encode($array);

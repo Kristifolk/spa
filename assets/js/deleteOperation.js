@@ -9,7 +9,9 @@ function sendDeleteRequest(id){
                 document.getElementById(id).style.display = "none";
 
                 let result = JSON.parse(data);
-                console.log(result[2]);
+                if(result.error) {
+                    alert(result.error);
+                }
                 // Данные после обновления. Выводим данные сумм в #total2
                 const totalSum =
                     '<div>'
@@ -18,15 +20,13 @@ function sendDeleteRequest(id){
                     +'<h5>'+ 'Сумма Расхода: ' + result[1] + 'руб' + '</h5>'
                     +'</div>'
                 $('#total2').html(totalSum);
+
                 // Скрываем текущие данные #total
                 document.getElementById("total").style.display = "none";
 
                 let tableNew = '';
                 const innerArray = result[2]; // Получаем внутренний массив
                 for (let i = 0; i < innerArray.length; i++) {
-                    //const item = innerArray[i]['id'];
-                    //console.log(item); // Выводим каждый элемент внутреннего массива
-
                     // Данные после обновления. Выводим новую строку с данными в таблицу
                     const tableRow =
                         '<tr id="' + innerArray[i]['id'] + '">'
@@ -40,18 +40,19 @@ function sendDeleteRequest(id){
                         + '</tr>';
                     tableNew += tableRow;
                 }
+
                 // Обновить элемент <tbody> таблицы с классом table
                 $('.table tbody').html(tableNew);
-
-
-                // Скрываем текущие данные #total
-                //document.getElementById("tbody").style.display = "none";
 
                 // Обновление списка строк таблицы
                 let tableRows = $('.table tbody tr');
                 if (tableRows.length > 10) {
                     tableRows.slice(10).remove();
                 }
+            },
+
+            error: function (e) {
+                console.log(e);
             }
         });
     });
