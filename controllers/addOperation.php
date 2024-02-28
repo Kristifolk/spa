@@ -22,25 +22,23 @@ $user_id = $_SESSION['user_id'];
 $validation = new Validation();
 
 if(!$validation->isPositiveNumber($amount)){
-    echo "Введите положительное число";
-    exit();
+    echo json_encode(['error' => 'Введите положительное число']);
+    die();
 }
 
 if(!$validation->isCorrectText($description)){
-    echo "Некорректный ввод комментария";
-    exit();
+    echo json_encode(['error' => 'Некорректный ввод комментария']);
+    die();
 }
 
 $operationData = $operation->addOperation($user_id, $amount, $type, $description);
-
-if(!$operationData){//false
-    echo "Ошибка добавления операции";
-    exit();
+//var_dump($operationData);
+if(!$operationData){
+    echo json_encode(['error' => 'Ошибка добавления операции']);
+    die();
 }
 
 $totalIncome = $operation->totalIncome();
 $totalExpense = $operation->totalExpense();
-$array = [$operationData, $totalIncome, $totalExpense];
+$array = ['operationData' => $operationData, 'totalIncome' => $totalIncome, 'totalExpense' => $totalExpense];
 echo json_encode($array);
-
-//header('Location: ../');

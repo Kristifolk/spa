@@ -20,6 +20,32 @@ function sendDeleteRequest(id){
                 $('#total2').html(totalSum);
                 // Скрываем текущие данные #total
                 document.getElementById("total").style.display = "none";
+
+
+                // // Данные после обновления. Выводим новую строку с данными в таблицу
+                // const tableNew =
+                //     '<tr id="'+ result[0]['id']+'">'
+                //     +'<td>'+ result[0]['amount'] +'</td>'
+                //     +'<td>'+ result[0]['type'] +'</td>'
+                //     +'<td>'+ result[0]['description'] +'</td>'
+                //     +'<td>'+ result[0]['created_at'] +'</td>'
+                //     +'<td>'+ result[0]['user_name'] +'</td>'
+                //     +'<td><button type="submit" name="button" onClick="sendDeleteRequest('+ result[0]['id']
+                //     +')">Удалить</button></td>'
+                //     +'</tr>';
+                //
+                // // Обновить элемент <tbody> таблицы с классом table
+                // $('.table tbody').html(tableNew);
+
+
+                // // Скрываем текущие данные #total
+                //document.getElementById("tbody").style.display = "none";
+
+                // Обновление списка строк таблицы
+                let tableRows = $('.table tbody tr');
+                if (tableRows.length > 10) {
+                    tableRows.slice(10).remove();
+                }
             }
         });
     });

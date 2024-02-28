@@ -32,7 +32,8 @@ if (isset($_GET['id'])) {
 
 //header('Location: ../');
 
-$totalIncome = $operation->totalIncome();
-$totalExpense = $operation->totalExpense();
+$totalIncome = $operation->totalIncome() ?? '';
+$totalExpense = $operation->totalExpense()  ?? '';
+//$array = [$delOperation, $totalIncome, $totalExpense];
 $array = [$totalIncome, $totalExpense];
 echo json_encode($array);

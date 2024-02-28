@@ -36,11 +36,13 @@ public function __construct()
         $operationId = $this->db->lastInsertId();
 
         // Получаем данные только что добавленной операции для возврата
-        $sql = "SELECT * FROM operations ORDER BY id DESC LIMIT 10";//ошибка тут или
+        $sql = "SELECT operations.*, users.name AS user_name FROM operations
+            JOIN users ON users.id = operations.user_id WHERE operations.id = :id";
         $query = $this->db->prepare($sql);
+        $query->bindParam(':id', $operationId);
         $query->execute();
         $this->dbCheckError($query);
-        $operationData = $query->fetchAll();//fetch(); /ошибка тут или
+        $operationData = $query->fetch();
 
         return $operationData;
     }
@@ -54,6 +56,8 @@ public function __construct()
         $query->execute();
         $this->dbCheckError($query);
 
+        // Обновление списка строк таблицы
+        //return $this->lastTenOperations();
         return true;
     }
 
