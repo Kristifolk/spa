@@ -48,7 +48,7 @@ class User extends Abstract_
         $query->bindParam(':email', $email);
         $query->bindParam(':password', $hashed_password);
         $query->execute();
-        $errorInfo = $this->dbCheckError($query);
+        $this->dbCheckError($query);
         return true;
     }
     public function user($tel, $email)

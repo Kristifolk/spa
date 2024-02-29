@@ -43,7 +43,7 @@ if (!empty($LoginEmailResult)) {
     }
 }
 
-function authentication($LoginResult, $pass, $validation): void
+function authentication($LoginResult, $pass, Validation $validation): void
 {
     $name = $LoginResult[0]['name'];
     $id = $LoginResult[0]['id'];

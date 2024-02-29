@@ -21,7 +21,7 @@ $delOperation = $operation->delOperation($id);
 
 if (!$delOperation) {
     echo json_encode(['error' => 'Ошибка удаления операции']);
-    die();
+    exit();
 }
 
 $totalIncome = $operation->totalIncome() ?? '';

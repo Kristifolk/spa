@@ -41,7 +41,6 @@ session_start();
                             </li>
                             <li class="nav-item">
                                 <button type="button" onclick="logout()" class="nav-link" style="border: none; background: none;  cursor: pointer;" >Logout</button>
-
                             </li>
                         <?php
                         else: ?>

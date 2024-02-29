@@ -7,13 +7,6 @@ use src\models\DB;
 
 class Abstract_
 {
-    private $db;
-    public function __construct()
-    {
-        $con = new DB();
-        $this->db = $con->connection();
-    }
-
 // Проверка выполнения запроса к БД
     function dbCheckError($query)
     {

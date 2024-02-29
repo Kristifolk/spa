@@ -8,6 +8,7 @@ ini_set('display_errors', 1);
 
 use src\controllers\Validation;
 use src\models\Operation;
+
 $operation = new Operation();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -23,19 +24,19 @@ $validation = new Validation();
 
 if(!$validation->isPositiveNumber($amount)){
     echo json_encode(['error' => 'Введите положительное число']);
-    die();
+    exit();
 }
 
 if(!$validation->isCorrectText($description)){
     echo json_encode(['error' => 'Некорректный ввод комментария']);
-    die();
+    exit();
 }
 
 $operationData = $operation->addOperation($user_id, $amount, $type, $description);
-//var_dump($operationData);
+
 if(!$operationData){
     echo json_encode(['error' => 'Ошибка добавления операции']);
-    die();
+    exit();
 }
 
 $totalIncome = $operation->totalIncome();

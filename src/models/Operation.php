@@ -42,8 +42,7 @@ public function __construct()
         $query->bindParam(':id', $operationId);
         $query->execute();
         $this->dbCheckError($query);
-        $operationData = $query->fetch();
-        return $operationData;
+        return $query->fetch();
     }
 
     public function delOperation($id): bool
@@ -59,10 +58,11 @@ public function __construct()
 
     public function lastTenOperations()
     {
-        $sql = "SELECT operations.*, users.name AS user_name FROM operations
-            JOIN users ON users.id = operations.user_id
-            ORDER BY operations.id DESC
-            LIMIT 10";
+        $sql = "SELECT operations.*, users.name AS user_name 
+                FROM operations
+                JOIN users ON users.id = operations.user_id
+                ORDER BY operations.id DESC
+                LIMIT 10";
         $query = $this->db->prepare($sql);
         $query->execute();
         $this->dbCheckError($query);
