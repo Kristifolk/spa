@@ -1,6 +1,6 @@
 <?php
 
-namespace src\controllers;
+namespace src\components;
 
 use src\models\User;
 

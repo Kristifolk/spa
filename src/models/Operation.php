@@ -2,14 +2,16 @@
 
 namespace src\models;
 
-class Operation extends Abstract_
+use src\components\DB;
+
+class Operation
 {
     private \PDO $db;
-public function __construct()
-{
-    $con = new DB();
-    $this->db = $con->connection();
-}
+    public function __construct()
+    {
+        $con = new DB();
+        $this->db = $con->connection();
+    }
 
     public function types()
     {
@@ -17,7 +19,6 @@ public function __construct()
 
         $query = $this->db->prepare($sql);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchAll();
     }
     public function addOperation($user_id, $amount, $type, $description)
@@ -30,7 +31,6 @@ public function __construct()
         $query->bindParam(':type', $type);
         $query->bindParam(':description', $description);
         $query->execute();
-        $this->dbCheckError($query);
         // Получаем ID только что добавленной операции
         $operationId = $this->db->lastInsertId();
 
@@ -41,7 +41,6 @@ public function __construct()
         $query = $this->db->prepare($sql);
         $query->bindParam(':id', $operationId);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetch();
     }
 
@@ -52,7 +51,6 @@ public function __construct()
         $query = $this->db->prepare($sql);
         $query->bindParam(':id', $id);
         $query->execute();
-        $this->dbCheckError($query);
         return true;
     }
 
@@ -65,7 +63,6 @@ public function __construct()
                 LIMIT 10";
         $query = $this->db->prepare($sql);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchAll();
     }
 
@@ -74,7 +71,6 @@ public function __construct()
         $sql = "SELECT SUM(amount) AS total_income FROM operations WHERE type = 'Приход'";
         $query = $this->db->prepare($sql);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchColumn();
     }
 
@@ -83,7 +79,6 @@ public function __construct()
         $sql = "SELECT SUM(amount) AS total_expense FROM operations WHERE type = 'Расход'";
         $query = $this->db->prepare($sql);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchColumn();
     }
 }

@@ -6,7 +6,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-use src\controllers\Validation;
+use src\components\Validation;
 use src\models\User;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

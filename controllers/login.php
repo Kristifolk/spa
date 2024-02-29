@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 use src\models\User;
-use src\controllers\Validation;
+use src\components\Validation;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();

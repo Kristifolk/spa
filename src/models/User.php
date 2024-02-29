@@ -2,7 +2,9 @@
 
 namespace src\models;
 
-class User extends Abstract_
+use src\components\DB;
+
+class User
 {
     private \PDO $db;
 
@@ -20,7 +22,6 @@ class User extends Abstract_
         //bindParam позволяет использовать различные значения для переменной $login и обеспечивает безопасность от SQL-инъекций
         $query->bindParam(':login', $login);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchAll();
     }
 
@@ -31,7 +32,6 @@ class User extends Abstract_
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetchAll();
     }
 
@@ -48,7 +48,6 @@ class User extends Abstract_
         $query->bindParam(':email', $email);
         $query->bindParam(':password', $hashed_password);
         $query->execute();
-        $this->dbCheckError($query);
         return true;
     }
     public function user($tel, $email)
@@ -59,7 +58,6 @@ class User extends Abstract_
         $query->bindParam(':tel', $tel);
         $query->bindParam(':email', $email);
         $query->execute();
-        $this->dbCheckError($query);
         return $query->fetch();
     }
 }
